@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//sweetalert2
+@import '~sweetalert2/dist/sweetalert2.min.css';
+@import '~sweetalert2/src/variables';
+@import '~sweetalert2/src/sweetalert2';
+
+//vuetify
+@import '~vuetify/dist/vuetify.min.css';
+
+//material icons
+@import '~@mdi/font/css/materialdesignicons.min.css';
