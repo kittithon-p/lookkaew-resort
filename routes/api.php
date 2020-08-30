@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/furniture', 'FurnitureController@store');
+
+Route::get('/furniture', 'FurnitureController@index');
+
+Route::get('/furniture/{id}', 'FurnitureController@show');
+
+Route::delete('/furniture/{id}', 'FurnitureController@destroy');
+
+Route::put('/furniture/{id}', 'FurnitureController@update');
