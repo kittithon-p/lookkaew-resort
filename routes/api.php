@@ -24,3 +24,13 @@ Route::get('/furniture/{id}', 'FurnitureController@show');
 Route::delete('/furniture/{id}', 'FurnitureController@destroy');
 
 Route::put('/furniture/{id}', 'FurnitureController@update');
+
+Route::post('/room', 'RoomController@store');
+
+Route::get('/room', 'RoomController@index');
+
+Route::get('/room/{id}', 'RoomController@show');
+
+Route::delete('/room/{id}', 'RoomController@destroy');
+
+Route::put('/room/{id}', 'RoomController@update');
