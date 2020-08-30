@@ -32,3 +32,9 @@ git clone https://github.com/kkaarrdd/Laravel.git
 ### ทำการรัน
 - php artisan serve
 - npm run watch
+
+### สร้าง controller
+php artisan make:controller NameController --resource
+
+### สร้าง
+php artisan make:model Name -m
