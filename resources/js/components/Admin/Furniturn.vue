@@ -1,12 +1,3 @@
-Skip to content Search or jump to… Pull requests Issues Marketplace Explore
-@kkaarrdd vuetifyjs / vuetify 601 27.3k4.8k Code Issues 1.2k Pull requests 45
-Discussions Actions Security Insights
-vuetify/packages/docs/src/examples/data-tables/complex/crud.vue @phiter phiter
-docs: add activator slot attrs to doc examples (#11394) … Latest commit c232556
-on Jun 9 History 11 contributors
-@johnleider@jacekkarczmarczyk@stefan-malcek@phiter@KaelWD@JHeimbach@ElijahKotyluk@dhonx@sh7dm@MajesticPotatoe@zhao-jessica
-240 lines (229 sloc) 5.9 KB
-
 <template>
     <v-data-table
         :headers="headers"
@@ -19,6 +10,7 @@ on Jun 9 History 11 contributors
                 <v-toolbar-title>เฟอร์นิเจอร์</v-toolbar-title>
                 <v-divider class="mx-4" inset vertical></v-divider>
                 <v-spacer></v-spacer>
+
                 <v-dialog v-model="dialog" max-width="500px">
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
@@ -32,7 +24,9 @@ on Jun 9 History 11 contributors
                     </template>
                     <v-card>
                         <v-card-title>
-                            <span class="headline">{{ formTitle }}</span>
+                            <span class="headline"
+                                >เพิ่มรายการเฟอร์นิเจอร์</span
+                            >
                         </v-card-title>
 
                         <v-card-text>
@@ -84,7 +78,6 @@ export default {
             {
                 text: "รายการเฟอร์นิเจอร์",
                 align: "start",
-                sortable: false,
                 value: "name"
             },
             { text: "ดำเนินการ", value: "actions", sortable: false }
@@ -100,13 +93,6 @@ export default {
             state: "1"
         }
     }),
-    computed: {
-        formTitle() {
-            return this.editedIndex === -1
-                ? "เพิ่มรายการเฟอร์นิเจอร์"
-                : "แก้ไขรายการเฟอร์นิเจอร์";
-        }
-    },
     watch: {
         dialog(val) {
             val || this.close();
@@ -145,6 +131,11 @@ export default {
                         })
                         .catch(error => {
                             console.log(error);
+                            this.$swal({
+                                icon: "error",
+                                title: "เกิดข้อผิดพลาด...",
+                                text: "โปรดรองอีกครั้ง!"
+                            });
                         });
                 }
             });
@@ -156,32 +147,60 @@ export default {
                 this.editedIndex = -1;
             });
         },
-        save(item) {
+        save() {
             if (this.editedIndex > -1) {
-                console.log(item.id);
-                // axios
-                //     .put("/api/furniture/" + item.id, {
-                //         name: this.editedItem.name,
-                //         state: this.editedItem.state
-                //     })
-                //     .then(response => {
-                //         console.log(response);
-                //         this.initialize();
-                //     })
-                //     .catch(error => {
-                //         console.log(error);
-                //     });
+                const furnitureId = Object.assign(
+                    this.desserts[this.editedIndex],
+                    this.editedItem
+                );
+                console.log(furnitureId.id);
+                //แก้ไขข้อมูล
+                axios
+                    .put("/api/furniture/" + furnitureId.id, {
+                        name: this.editedItem.name,
+                        state: this.editedItem.state
+                    })
+                    .then(response => {
+                        console.log(response);
+                        this.$swal({
+                            icon: "success",
+                            title: "แก้ไขข้อมูลสำเร็จ"
+                        });
+                        this.initialize();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.$swal({
+                            icon: "error",
+                            title: "เกิดข้อผิดพลาด...",
+                            text: "โปรดรองอีกครั้ง!"
+                        });
+                    });
             } else {
+                //สร้างข้อมูลใหม่
                 axios
                     .post("/api/furniture", {
                         name: this.editedItem.name,
                         state: this.editedItem.state
                     })
                     .then(response => {
+                        this.$swal({
+                            icon: "success",
+                            title: "ข้อมูลสำเร็จ",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
                         this.initialize();
                     })
                     .catch(error => {
                         console.log(error);
+                        this.$swal({
+                            icon: "error",
+                            title: "เกิดข้อผิดพลาด...",
+                            text: "ในการสร้างรายการโปรดรองอีกครั้ง!",
+                            footer:
+                                "อาจเกิดจากการใส่ข้อมูลผิดพลาดโปรดตรวจสอบแล้วลองอีกครั้ง"
+                        });
                     });
             }
             this.close();
