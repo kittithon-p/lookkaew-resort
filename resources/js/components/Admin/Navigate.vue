@@ -4,7 +4,7 @@
       <v-list-item>
         <v-list-item-avatar>
           <v-img
-            src="https://scontent.fbkk11-1.fna.fbcdn.net/v/t1.0-9/106185946_2294436734199019_2399853570178858463_n.jpg?_nc_cat=107&_nc_sid=110474&_nc_eui2=AeFo-HYqG5rMBqnnT646A1lZKe_EUko67Esp78RSSjrsS9MvpSb417CXBMhSBO9vtFtOkOKlamJYK1MQGRajGDO9&_nc_ohc=pnPEjETWu0sAX9_8LlY&_nc_oc=AQmg9HVWeKYvMENJF-d2UfqiBPjNQdzWqwzGZ4S4NQTK0oent4Mzmqx2hqFGYDaTJb8&_nc_ht=scontent.fbkk11-1.fna&oh=4543db29f1cf6091b4c6493bd31be13a&oe=5F6861B8"
+            src="https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.0-0/p640x640/40538933_1879739815668715_7515528156170682368_o.jpg?_nc_cat=101&_nc_sid=7aed08&_nc_ohc=Hsl08EPPJ4EAX9wjOYV&_nc_ht=scontent.fbkk7-3.fna&tp=6&oh=9001297d000568e7b23f22c4a8bb29dc&oe=5F7217CB"
           ></v-img>
         </v-list-item-avatar>
         <v-list-item-title class="title">กิตติธร เพ็งศรี</v-list-item-title>
