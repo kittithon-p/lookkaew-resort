@@ -1977,12 +1977,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.initialize();
@@ -1993,7 +1987,6 @@ __webpack_require__.r(__webpack_exports__);
       headers: [{
         text: "รายการเฟอร์นิเจอร์",
         align: "start",
-        sortable: false,
         value: "name"
       }, {
         text: "ดำเนินการ",
@@ -2011,11 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
         state: "1"
       }
     };
-  },
-  computed: {
-    formTitle: function formTitle() {
-      return this.editedIndex === -1 ? "เพิ่มรายการเฟอร์นิเจอร์" : "แก้ไขรายการเฟอร์นิเจอร์";
-    }
   },
   watch: {
     dialog: function dialog(val) {
@@ -2057,6 +2045,12 @@ __webpack_require__.r(__webpack_exports__);
             _this2.initialize();
           })["catch"](function (error) {
             console.log(error);
+
+            _this2.$swal({
+              icon: "error",
+              title: "เกิดข้อผิดพลาด...",
+              text: "โปรดรองอีกครั้ง!"
+            });
           });
         }
       });
@@ -2070,30 +2064,57 @@ __webpack_require__.r(__webpack_exports__);
         _this3.editedIndex = -1;
       });
     },
-    save: function save(item) {
+    save: function save() {
       var _this4 = this;
 
       if (this.editedIndex > -1) {
-        console.log(item.id); // axios
-        //     .put("/api/furniture/" + item.id, {
-        //         name: this.editedItem.name,
-        //         state: this.editedItem.state
-        //     })
-        //     .then(response => {
-        //         console.log(response);
-        //         this.initialize();
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
+        var furnitureId = Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        console.log(furnitureId.id); //แก้ไขข้อมูล
+
+        axios.put("/api/furniture/" + furnitureId.id, {
+          name: this.editedItem.name,
+          state: this.editedItem.state
+        }).then(function (response) {
+          console.log(response);
+
+          _this4.$swal({
+            icon: "success",
+            title: "แก้ไขข้อมูลสำเร็จ"
+          });
+
+          _this4.initialize();
+        })["catch"](function (error) {
+          console.log(error);
+
+          _this4.$swal({
+            icon: "error",
+            title: "เกิดข้อผิดพลาด...",
+            text: "โปรดรองอีกครั้ง!"
+          });
+        });
       } else {
+        //สร้างข้อมูลใหม่
         axios.post("/api/furniture", {
           name: this.editedItem.name,
           state: this.editedItem.state
         }).then(function (response) {
+          _this4.$swal({
+            icon: "success",
+            title: "ข้อมูลสำเร็จ",
+            showConfirmButton: false,
+            timer: 2000
+          });
+
           _this4.initialize();
         })["catch"](function (error) {
           console.log(error);
+
+          _this4.$swal({
+            icon: "error",
+            title: "เกิดข้อผิดพลาด...",
+            text: "ในการสร้างรายการโปรดรองอีกครั้ง!",
+            footer: "อาจเกิดจากการใส่ข้อมูลผิดพลาดโปรดตรวจสอบแล้วลองอีกครั้ง"
+          });
         });
       }
 
@@ -41818,7 +41839,7 @@ var render = function() {
                       [
                         _c("v-card-title", [
                           _c("span", { staticClass: "headline" }, [
-                            _vm._v(_vm._s(_vm.formTitle))
+                            _vm._v("เพิ่มรายการเฟอร์นิเจอร์")
                           ])
                         ]),
                         _vm._v(" "),
@@ -41987,7 +42008,7 @@ var render = function() {
                   _c("v-img", {
                     attrs: {
                       src:
-                        "https://scontent.fbkk11-1.fna.fbcdn.net/v/t1.0-9/106185946_2294436734199019_2399853570178858463_n.jpg?_nc_cat=107&_nc_sid=110474&_nc_eui2=AeFo-HYqG5rMBqnnT646A1lZKe_EUko67Esp78RSSjrsS9MvpSb417CXBMhSBO9vtFtOkOKlamJYK1MQGRajGDO9&_nc_ohc=pnPEjETWu0sAX9_8LlY&_nc_oc=AQmg9HVWeKYvMENJF-d2UfqiBPjNQdzWqwzGZ4S4NQTK0oent4Mzmqx2hqFGYDaTJb8&_nc_ht=scontent.fbkk11-1.fna&oh=4543db29f1cf6091b4c6493bd31be13a&oe=5F6861B8"
+                        "https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.0-0/p640x640/40538933_1879739815668715_7515528156170682368_o.jpg?_nc_cat=101&_nc_sid=7aed08&_nc_ohc=Hsl08EPPJ4EAX9wjOYV&_nc_ht=scontent.fbkk7-3.fna&tp=6&oh=9001297d000568e7b23f22c4a8bb29dc&oe=5F7217CB"
                     }
                   })
                 ],
