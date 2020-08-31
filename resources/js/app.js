@@ -20,6 +20,7 @@ Vue.component('navigate-component', require('./components/Admin/Navigate.vue').d
 const routes = [
     { path: "/", component: require("./components/ExampleComponent.vue").default },
     { path: "/room", component: require("./components/Admin/Rooms.vue").default },
+    { path: "/room/furniturn", component: require("./components/Admin/Furniturn.vue").default },
 ];
 
 const router = new VueRouter({
