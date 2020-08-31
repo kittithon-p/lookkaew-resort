@@ -15,22 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//furniture
 Route::post('/furniture', 'FurnitureController@store');
-
 Route::get('/furniture', 'FurnitureController@index');
-
 Route::get('/furniture/{id}', 'FurnitureController@show');
-
 Route::delete('/furniture/{id}', 'FurnitureController@destroy');
-
 Route::put('/furniture/{id}', 'FurnitureController@update');
 
+//room
 Route::post('/room', 'RoomController@store');
-
 Route::get('/room', 'RoomController@index');
-
 Route::get('/room/{id}', 'RoomController@show');
-
-Route::delete('/room/{id}', 'RoomController@destroy');
-
+Route::delete('/room/{splice(index, 1)}', 'RoomController@destroy');
 Route::put('/room/{id}', 'RoomController@update');
