@@ -10,7 +10,6 @@
 <body>
     <dev id="app">
         <navigate-component></navigate-component>
-        <router-view></router-view>
     </dev>
     <script src="{{asset('js/app.js')}}"></script>
 </body>
