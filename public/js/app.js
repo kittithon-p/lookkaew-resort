@@ -2019,7 +2019,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editItem: function editItem(item) {
-      console.log(item.id);
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -2027,7 +2026,6 @@ __webpack_require__.r(__webpack_exports__);
     deleteItem: function deleteItem(item) {
       var _this2 = this;
 
-      console.log(item.id);
       this.$swal({
         title: "คุณแน่ใจไหม?",
         text: "คุณจะไม่สามารถเปลี่ยนกลับได้",
@@ -2044,8 +2042,6 @@ __webpack_require__.r(__webpack_exports__);
           axios["delete"]("/api/furniture/" + item.id).then(function (response) {
             _this2.initialize();
           })["catch"](function (error) {
-            console.log(error);
-
             _this2.$swal({
               icon: "error",
               title: "เกิดข้อผิดพลาด...",
@@ -2068,15 +2064,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       if (this.editedIndex > -1) {
-        var furnitureId = Object.assign(this.desserts[this.editedIndex], this.editedItem);
-        console.log(furnitureId.id); //แก้ไขข้อมูล
+        var furnitureId = Object.assign(this.desserts[this.editedIndex], this.editedItem); //แก้ไขข้อมูล
 
         axios.put("/api/furniture/" + furnitureId.id, {
           name: this.editedItem.name,
           state: this.editedItem.state
         }).then(function (response) {
-          console.log(response);
-
           _this4.$swal({
             icon: "success",
             title: "แก้ไขข้อมูลสำเร็จ"
@@ -2084,8 +2077,6 @@ __webpack_require__.r(__webpack_exports__);
 
           _this4.initialize();
         })["catch"](function (error) {
-          console.log(error);
-
           _this4.$swal({
             icon: "error",
             title: "เกิดข้อผิดพลาด...",
@@ -2107,8 +2098,6 @@ __webpack_require__.r(__webpack_exports__);
 
           _this4.initialize();
         })["catch"](function (error) {
-          console.log(error);
-
           _this4.$swal({
             icon: "error",
             title: "เกิดข้อผิดพลาด...",
