@@ -105,13 +105,11 @@ export default {
             });
         },
         editItem(item) {
-            console.log(item.id);
             this.editedIndex = this.desserts.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
         },
         deleteItem(item) {
-            console.log(item.id);
             this.$swal({
                 title: "คุณแน่ใจไหม?",
                 text: "คุณจะไม่สามารถเปลี่ยนกลับได้",
@@ -130,7 +128,6 @@ export default {
                             this.initialize();
                         })
                         .catch(error => {
-                            console.log(error);
                             this.$swal({
                                 icon: "error",
                                 title: "เกิดข้อผิดพลาด...",
@@ -153,7 +150,6 @@ export default {
                     this.desserts[this.editedIndex],
                     this.editedItem
                 );
-                console.log(furnitureId.id);
                 //แก้ไขข้อมูล
                 axios
                     .put("/api/furniture/" + furnitureId.id, {
@@ -161,7 +157,6 @@ export default {
                         state: this.editedItem.state
                     })
                     .then(response => {
-                        console.log(response);
                         this.$swal({
                             icon: "success",
                             title: "แก้ไขข้อมูลสำเร็จ"
@@ -169,7 +164,6 @@ export default {
                         this.initialize();
                     })
                     .catch(error => {
-                        console.log(error);
                         this.$swal({
                             icon: "error",
                             title: "เกิดข้อผิดพลาด...",
@@ -193,7 +187,6 @@ export default {
                         this.initialize();
                     })
                     .catch(error => {
-                        console.log(error);
                         this.$swal({
                             icon: "error",
                             title: "เกิดข้อผิดพลาด...",
